@@ -859,6 +859,7 @@ build.json @home-assistant/supervisor
 /tests/components/number/ @home-assistant/core @Shulyaka
 /homeassistant/components/nut/ @bdraco @ollo69 @pestevez
 /tests/components/nut/ @bdraco @ollo69 @pestevez
+/homeassistant/components/nuvo_serial/ @sprocket-9
 /homeassistant/components/nws/ @MatthewFlamm @kamiyo
 /tests/components/nws/ @MatthewFlamm @kamiyo
 /homeassistant/components/nzbget/ @chriscla

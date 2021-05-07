@@ -1307,6 +1307,9 @@ numato-gpio==0.10.0
 # homeassistant.components.trend
 numpy==1.23.2
 
+# homeassistant.components.nuvo_serial
+nuvo-serial==0.2
+
 # homeassistant.components.oasa_telematics
 oasatelematics==0.3
 
