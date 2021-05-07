@@ -507,6 +507,7 @@ FLOWS = {
         "nuheat",
         "nuki",
         "nut",
+        "nuvo_serial",
         "nws",
         "nyt_games",
         "nzbget",
