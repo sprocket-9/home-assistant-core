@@ -2,7 +2,7 @@
 import logging
 
 from nuvo_serial import get_nuvo_async
-from nuvo_serial.const import MODEL_GC
+from nuvo_serial.const import MODEL_GC, SYSTEM_RESTART
 from nuvo_serial.grand_concerto_essentia_g import NuvoAsync
 import voluptuous as vol
 
@@ -11,11 +11,12 @@ from homeassistant.const import ATTR_DEVICE_ID, CONF_PORT, CONF_TYPE, Platform
 from homeassistant.core import HomeAssistant, ServiceCall
 from homeassistant.exceptions import ConfigEntryNotReady, HomeAssistantError
 from homeassistant.helpers import config_validation as cv, device_registry as dr
-from homeassistant.helpers.typing import ConfigType
 
 from .const import (
     COMMAND_RESPONSE_TIMEOUT,
     DOMAIN,
+    DOMAIN_EVENT,
+    EVENT_DEVICE_RESTARTED,
     NUVO_OBJECT,
     SERVICE_ATTR_DATETIME,
     SERVICE_CONFIGURE_TIME,
@@ -31,11 +32,6 @@ CONFIGURE_TIME_SCHEMA = vol.Schema(
 )
 
 _LOGGER = logging.getLogger(__name__)
-
-
-async def async_setup(hass: HomeAssistant, config: ConfigType) -> bool:
-    """Set up the Nuvo multi-zone amplifier component."""
-    return True
 
 
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
@@ -58,7 +54,7 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
 
     device_registry = dr.async_get(hass)
 
-    device_registry.async_get_or_create(
+    device_entry = device_registry.async_get_or_create(
         config_entry_id=entry.entry_id,
         identifiers={(DOMAIN, port)},
         manufacturer="Nuvo",
@@ -102,6 +98,17 @@ async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
         hass.services.async_register(
             DOMAIN, SERVICE_CONFIGURE_TIME, configure_time, schema=CONFIGURE_TIME_SCHEMA
         )
+
+    async def _system_restarted(message) -> None:
+        hass.bus.async_fire(
+            DOMAIN_EVENT,
+            {
+                "type": EVENT_DEVICE_RESTARTED,
+                ATTR_DEVICE_ID: device_entry.id,
+            },
+        )
+
+    nuvo.add_subscriber(_system_restarted, SYSTEM_RESTART)
 
     return True
 

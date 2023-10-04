@@ -60,6 +60,7 @@ DOMAIN_EVENT = "nuvo_serial_event"
 EVENT_KEYPAD_PLAY_PAUSE = "keypad_play_pause"
 EVENT_KEYPAD_PREV = "keypad_prev"
 EVENT_KEYPAD_NEXT = "keypad_next"
+EVENT_DEVICE_RESTARTED = "device_restarted"
 
 KEYPAD_BUTTON_PLAYPAUSE = "PLAYPAUSE"
 KEYPAD_BUTTON_PREV = "PREV"

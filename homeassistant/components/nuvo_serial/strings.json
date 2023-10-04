@@ -87,9 +87,10 @@
   },
   "device_automation": {
     "trigger_type": {
-      "keypad_play_pause": "{entity_name} keypad play/pause button pressed",
-      "keypad_prev": "{entity_name} keypad prev button pressed",
-      "keypad_next": "{entity_name} keypad next button pressed"
+      "device_restarted": "Device restarted",
+      "keypad_play_pause": "{entity_name} zone keypad Play/Pause button pressed",
+      "keypad_prev": "{entity_name} zone keypad Prev button pressed",
+      "keypad_next": "{entity_name} zone keypad Next button pressed"
     }
   }
 }
