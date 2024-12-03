@@ -4850,6 +4850,12 @@
       "integration_type": "virtual",
       "supported_by": "inkbird"
     },
+    "nuvo_serial": {
+      "name": "Nuvo multi-zone amplifier (serial)",
+      "integration_type": "hub",
+      "config_flow": true,
+      "iot_class": "local_push"
+    },
     "nws": {
       "name": "National Weather Service (NWS)",
       "integration_type": "service",
