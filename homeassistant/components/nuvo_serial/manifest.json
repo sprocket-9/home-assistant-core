@@ -1,6 +1,7 @@
 {
   "domain": "nuvo_serial",
   "name": "Nuvo multi-zone amplifier (serial)",
+  "after_dependencies": ["usb"],
   "codeowners": ["@sprocket-9"],
   "config_flow": true,
   "documentation": "https://www.home-assistant.io/integrations/nuvo_serial",
